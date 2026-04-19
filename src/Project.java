@@ -73,13 +73,12 @@ public class Project {
         if (number >= 1) {
             for (int i = 1; i <= number; i++) {
                 sum += i; // sum = sum + i // getInt() = 5 // sum = 0 + 1, sum = 1 + 2, sum = 3 + 3, sum = 6 + 4
-                System.out.println("Cумма чисел от 1 до " + number + " = " + sum);
-            }
+            } System.out.println("Cумма чисел от 1 до " + number + " = " + sum);
         } else {
             for (int i = 1; i >= number; i--) {
                 sum += i;
-                System.out.println("Cумма чисел от 1 до " + number + " = " + sum);
             }
+            System.out.println("Cумма чисел от 1 до " + number + " = " + sum);
         }
 
     }
