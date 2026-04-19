@@ -97,7 +97,7 @@ public class Project {
     public int factorial(int number) {
         int sum = 1;
         if (number == 0) {
-            System.out.println("1");
+            return 1;
         } else if (number > 12 || number < 0) {
             System.out.println("Введите число от 0 до 12");
             return 404;
