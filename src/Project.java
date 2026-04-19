@@ -81,6 +81,7 @@ public class Project {
     public void tableX(int number) {
         if(number == 0) {
             System.out.println("На ноль уможать нельзя!");
+            return;
         }
         for (int i = 1; i <= 10; i++) {
             System.out.println(i + ")" + i + "*" + number + " = " + (i * number));
