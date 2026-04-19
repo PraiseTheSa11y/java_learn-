@@ -66,16 +66,22 @@ public class Project {
 
     public void sum(int number) {
         int sum = 0;
+        if(number == 0) {
+            System.out.println("Сумма равна 0");
+            return;
+        }
         if (number >= 1) {
             for (int i = 1; i <= number; i++) {
                 sum += i; // sum = sum + i // getInt() = 5 // sum = 0 + 1, sum = 1 + 2, sum = 3 + 3, sum = 6 + 4
+                System.out.println("Cумма чисел от 1 до " + number + " = " + sum);
             }
         } else {
             for (int i = 1; i >= number; i--) {
                 sum += i;
+                System.out.println("Cумма чисел от 1 до " + number + " = " + sum);
             }
-            System.out.println("Cумма чисел от 1 до " + number + " = " + sum);
         }
+
     }
 
     public void tableX(int number) {
