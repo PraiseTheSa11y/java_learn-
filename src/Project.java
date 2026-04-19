@@ -66,27 +66,41 @@ public class Project {
 
     public void sum(int number) {
         int sum = 0;
-        for (int i = 1; i <= number; i++) {
-            sum += i; // sum = sum + i // getInt() = 5 // sum = 0 + 1, sum = 1 + 2, sum = 3 + 3, sum = 6 + 4
+        if (number >= 1) {
+            for (int i = 1; i <= number; i++) {
+                sum += i; // sum = sum + i // getInt() = 5 // sum = 0 + 1, sum = 1 + 2, sum = 3 + 3, sum = 6 + 4
+            }
+        } else {
+            for (int i = 1; i >= number; i--) {
+                sum += i;
+            }
+            System.out.println("Cумма чисел от 1 до " + number + " = " + sum);
         }
-        System.out.println("Cумма чисел от 1 до " + number + " = " + sum);
     }
 
     public void tableX(int number) {
+        if(number == 0) {
+            System.out.println("На ноль уможать нельзя!");
+        }
         for (int i = 1; i <= 10; i++) {
             System.out.println(i + ")" + i + "*" + number + " = " + (i * number));
         }
     }
     public void printFactorial(int number) {
-        System.out.println("Факториал числа " + number + " = "  + factorial(number));
+        if(number < 0) {
+            System.out.println("Невозможно посчитать факториал");
+        } else {
+            System.out.println("Факториал числа " + number + " = " + factorial(number));
+        }
     }
 
     public int factorial(int number) {
         int sum = 1;
         if (number == 0) {
             System.out.println("1");
-        } else if (number > 12) {
+        } else if (number > 12 || number < 0) {
             System.out.println("Введите число от 0 до 12");
+            return 404;
         } else {
             /* for (int i = 1; i <= number; i++) {
                 // System.out.println("ДО " + sum + " " + i);
