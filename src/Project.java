@@ -1,18 +1,18 @@
 import java.util.Scanner;
 
- class Main {
-     public static void main(String[] args) {
-         Project p1 = new Project();
-         System.out.println("Введите число ");
+class Main {
+    public static void main(String[] args) {
+        Project p1 = new Project();
+        System.out.println("Введите число ");
         int number = p1.getInt();
-         p1.evenOrOdd(number);
-         p1.positiveOrNegative(number);
-         p1.numbersAmount(number);
-         p1.sum(number);
-         p1.tableX(number);
-         p1.printFactorial(number);
-     }
- }
+        p1.evenOrOdd(number);
+        p1.positiveOrNegative(number);
+        p1.numbersAmount(number);
+        p1.sum(number);
+        p1.tableX(number);
+        p1.printFactorial(number);
+    }
+}
 
 
 public class Project {
@@ -48,6 +48,9 @@ public class Project {
         if (number < 0) {
             System.out.println("Число отрицательное ");
         }
+        if (number == 0) {
+            System.out.println("Это ноль");
+        }
     }
 
     public void numbersAmount(int number) {
@@ -66,14 +69,15 @@ public class Project {
 
     public void sum(int number) {
         int sum = 0;
-        if(number == 0) {
+        if (number == 0) {
             System.out.println("Сумма равна 0");
             return;
         }
         if (number >= 1) {
             for (int i = 1; i <= number; i++) {
                 sum += i; // sum = sum + i // getInt() = 5 // sum = 0 + 1, sum = 1 + 2, sum = 3 + 3, sum = 6 + 4
-            } System.out.println("Cумма чисел от 1 до " + number + " = " + sum);
+            }
+            System.out.println("Cумма чисел от 1 до " + number + " = " + sum);
         } else {
             for (int i = 1; i >= number; i--) {
                 sum += i;
@@ -84,7 +88,7 @@ public class Project {
     }
 
     public void tableX(int number) {
-        if(number == 0) {
+        if (number == 0) {
             System.out.println("На ноль уможать нельзя!");
             return;
         }
@@ -92,8 +96,9 @@ public class Project {
             System.out.println(i + ")" + i + "*" + number + " = " + (i * number));
         }
     }
+
     public void printFactorial(int number) {
-        if(number < 0) {
+        if (number < 0) {
             System.out.println("Невозможно посчитать факториал");
         } else {
             System.out.println("Факториал числа " + number + " = " + factorial(number));
