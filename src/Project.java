@@ -1,9 +1,10 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 class Main {
     public static void main(String[] args) {
         Project p1 = new Project();
-        System.out.println("Введите число ");
+        // System.out.println("Введите число ");
         int number = p1.getInt();
         p1.evenOrOdd(number);
         p1.positiveOrNegative(number);
@@ -19,18 +20,18 @@ public class Project {
 
     static Scanner sc = new Scanner(System.in);
 
-    /* public static void main(String[] args) {
-        Project programm = new Project();
-        System.out.println("Введите число: ");
-        int number = getInt();
-       programm.sum(getInt());
-       programm.tableX(getInt());
-       programm.factorial(getInt());
-
-    } */
-
     public static int getInt() {
-        return sc.nextInt();
+        int number;
+        System.out.println("Введите число");
+        while (true) {
+            if (sc.hasNextInt()) {
+                number = sc.nextInt();
+                return number;
+            } else {
+                System.out.println("Ошибка: введите целое число");
+                sc.nextLine();
+            }
+        }
     }
 
     public void evenOrOdd(int number) {
@@ -55,12 +56,13 @@ public class Project {
 
     public void numbersAmount(int number) {
         int count = 0;
-        number = Math.abs(number);
-        if (number == 0) {
+        long temp = number;
+        temp = Math.abs(temp);
+        if (temp == 0) {
             count = 1;
         } else {
-            while (number > 0) {
-                number = number / 10;
+            while (temp > 0) {
+                temp = temp / 10;
                 count++;
             }
         }
@@ -68,23 +70,22 @@ public class Project {
     }
 
     public void sum(int number) {
-        int sum = 0;
+        long sum = 0;
         if (number == 0) {
             System.out.println("Сумма равна 0");
             return;
-        }
-        if (number >= 1) {
-            for (int i = 1; i <= number; i++) {
-                sum += i; // sum = sum + i // getInt() = 5 // sum = 0 + 1, sum = 1 + 2, sum = 3 + 3, sum = 6 + 4
-            }
-            System.out.println("Cумма чисел от 1 до " + number + " = " + sum);
-        } else {
-            for (int i = 1; i >= number; i--) {
+        }if (number < 1) {
+            for (int i = 0; i >= number; i--) {
                 sum += i;
             }
             System.out.println("Cумма чисел от 1 до " + number + " = " + sum);
         }
-
+        else  {
+            for (int i = 1; i <= number; i++) {
+                sum += i;
+            }
+            System.out.println("Cумма чисел от 1 до " + number + " = " + sum);
+        }
     }
 
     public void tableX(int number) {
@@ -98,7 +99,7 @@ public class Project {
     }
 
     public void printFactorial(int number) {
-        if (number < 0) {
+        if (number < 0 || number > 12) {
             System.out.println("Невозможно посчитать факториал");
         } else {
             System.out.println("Факториал числа " + number + " = " + factorial(number));
@@ -113,12 +114,6 @@ public class Project {
             System.out.println("Введите число от 0 до 12");
             return 404;
         } else {
-            /* for (int i = 1; i <= number; i++) {
-                // System.out.println("ДО " + sum + " " + i);
-                // sum = sum * i;
-                sum *= i;
-               //  System.out.println("ПОСЛЕ " + sum + " " + i);
-            } */
             if (number == 1) {
                 return 1;
             }
