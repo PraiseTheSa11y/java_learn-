@@ -1,8 +1,8 @@
 public class Day2 {
 
     public static void main(String[] args) {
-        int[] arr = {-1, 0, 6, -3, 4, 7, -5, 9, 13, 0, -5, -19, 20, 0, -0};
-        int[] array1 = {1, 2, 4, 5, 6, 17, 8, 9, 11, 14, 15, 17, 17,};
+        int[] arr = {-1, 0, 6, -3, 4, 7, -5, 9, 13, 0, -5, -19, 20, 0, 0};
+        int[] array1 = {1, 2, 4, 5, 6, 7, 8, 9, 11, 14, 15, 17, 17,};
         binaryXFinder(array1, 14);
         xFinder(arr, 7);
         positiveCounter(arr);
