@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Day3 {
@@ -24,6 +25,9 @@ public class Day3 {
         reversedString(user);
         isPalidrome(user);
         System.out.println(isPalidrome3(user));
+
+        String user2 = sc.nextLine();
+        System.out.println(isAnagram(user, user2));
 
 
     }
@@ -111,8 +115,28 @@ public class Day3 {
                 right--;
             } else {
                 return false;
-                }
             }
+        }
+        return true;
+    }
+
+    static boolean isAnagram(String line1, String line2) {
+        line1 = line1.toLowerCase();
+        line2 = line2.toLowerCase();
+
+        char[] chars1 = line1.toCharArray();
+        char[] chars2 = line2.toCharArray();
+
+        if (chars1.length != chars2.length) {
+            return false;
+        }
+        Arrays.sort(chars1);
+        Arrays.sort(chars2);
+        for (int i = 0; i < chars1.length; i++) {
+            if (chars1[i] != chars2[i]) {
+                return false;
+            }
+        }
         return true;
     }
 }
