@@ -45,7 +45,6 @@ public class Day4 {
     }
 
     static boolean containsNumber(int[] arr, int number) {
-
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] == number) {
                 return true;
