@@ -30,6 +30,13 @@ public class W3D2 {
         names.add("Илюха");
 
         System.out.println(findFirstLongerThanTarget(names, 5));
+        Books foundBook = findFirstBook(books, 500);
+            if (foundBook != null) {
+                System.out.println(foundBook.title);
+            } else {
+                System.out.println("Нет подходящей книги");
+            }
+
 
         nums.add(5);
         nums.add(10);
@@ -62,6 +69,9 @@ public class W3D2 {
     }
 
     static int maxArrList(ArrayList<Integer> nums) {
+        if(nums.isEmpty()) {
+            return -404;
+        }
         int currentMax = nums.get(0);
         for (int i = 1; i < nums.size(); i++) {
             if (nums.get(i) > currentMax) {

@@ -11,10 +11,15 @@ public class W3D6 {
         Task1.inputTasks(tasks, amountTasks, sc);
         Task1.printTasks(tasks);
         Task1.printSummary(tasks);
-        Task1.taskContainsWord(tasks, "Зал");
-        Task1.removeTask(tasks, 2);
-        Task1.printTasks(tasks);
+        System.out.println("Введите слово для поиска: ");
+        String word = sc.nextLine();
+        Task1.taskContainsWord(tasks, word);
+        System.out.println("Введите номер задачи для удаления: ");
+        int numberTask = sc.nextInt();
+        Task1.removeTask(tasks, numberTask);
         Task1.sortByPriority(tasks);
+        System.out.println("\n== Задачи после сортировки ==");
+        Task1.printTasks(tasks);
 
     }
 }
@@ -42,8 +47,8 @@ class Task1 {
             }
         }
     static void removeTask(ArrayList<Task1> tasks, int index) {
-        if(index >= 0 && index <= tasks.size() - 1) {
-            tasks.remove(index);
+        if(index >= 1 && index <= tasks.size()) {
+            tasks.remove(index - 1);
         } else {
             System.out.println("Недопустимый индекс задачи");
         }
@@ -74,10 +79,15 @@ class Task1 {
     }
     static void taskContainsWord(ArrayList<Task1> tasks, String targetWord) {
         System.out.println("Задачи в которых есть слово: " + targetWord);
+        boolean found = false;
         for(Task1 task : tasks) {
             if(Task1.containsWord(task, targetWord)) {
                 System.out.println("==" + task.title + "==");
+                found = true;
             }
+        }
+        if(!found) {
+            System.out.println("В задачах нет такого слова");
         }
     }
     static boolean containsWord(Task1 task, String targetWord) {
@@ -92,7 +102,6 @@ class Task1 {
     static double averagePriority(ArrayList<Task1> tasks) {
         double average = 0;
         if(tasks.isEmpty()) {
-            System.out.println("Список задач пуст");
             return 0;
         }
         for(Task1 task : tasks) {
@@ -144,6 +153,11 @@ class Task1 {
             int priority;
 
             while(true) {
+                if(!sc.hasNextInt()) {
+                    System.out.println("Введите число от 1 до 5");
+                    sc.nextLine();
+                    continue;
+                }
                 priority = sc.nextInt();
                 if (priority >= 1 && priority <= 5) {
                     break;
@@ -154,14 +168,18 @@ class Task1 {
             sc.nextLine();
             System.out.println("Введите статус: ");
 
-            String userInput = sc.nextLine();
             boolean isDone = false;
-            if(userInput.equalsIgnoreCase("+")) {
-                isDone = true;
-            } else if(userInput.equalsIgnoreCase("-")) {
-                isDone = false;
-            } else {
-                System.out.println("Повторите ввод - принимается: + / - ");
+            while(true) {
+                String userInput = sc.nextLine();
+                if (userInput.equalsIgnoreCase("+")) {
+                    isDone = true;
+                    break;
+                } else if (userInput.equalsIgnoreCase("-")) {
+                    isDone = false;
+                    break;
+                } else {
+                    System.out.println("Повторите ввод - принимается: + / - ");
+                }
             }
 
             tasks.add(new Task1(title, priority, isDone) );

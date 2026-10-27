@@ -9,13 +9,25 @@ public class W3D1 {
         s1.averageIncrease(0.5);
         s1.printInfo();
         s1.sayHello();
-        s1.isAdult();
+        if(s1.isAdult()) {
+            System.out.println("Cовершеннолетний");
+        } else {
+            System.out.println("Несовершеннолетний");
+        }
         s2.printInfo();
         s2.sayHello();
-        s2.isAdult();
+        if(s2.isAdult()) {
+            System.out.println("Cовершеннолетний");
+        } else {
+            System.out.println("Несовершеннолетний");
+        }
         s3.printInfo();
         s3.sayHello();
-        s3.isAdult();
+        if(s3.isAdult()) {
+            System.out.println("Cовершеннолетний");
+        } else {
+            System.out.println("Несовершеннолетний");
+        }
 
         Car toyota = new Car(89100, 2018, "Toyota", "Camry");
         Car bMW = new Car(10200, 2023, "BMW", "M5");
@@ -26,8 +38,16 @@ public class W3D1 {
         honda.printInfo();
         honda.drive(5000);
         honda.printInfo();
-        honda.isOld();
-        honda.needService();
+        if(honda.isOld()) {
+            System.out.println(honda.brand + honda.model + " Авто старое ");
+        } else {
+            System.out.println(honda.brand + honda.model + " Авто новое ");
+        }
+        if(honda.needService()) {
+            System.out.println(honda.brand + honda.model + " Необходим ТО");
+        } else {
+            System.out.println(honda.brand + honda.model + " ТО не нужен");
+        }
 
 
         Book persiJackson = new Book("Перси Джексон", "Рик Риордан", 800);
@@ -41,11 +61,23 @@ public class W3D1 {
         persiJackson.printInfo();
         theGrapes.printInfo();
 
-        mockingbird.isBigBook();
-        persiJackson.isBigBook();
+        if(mockingbird.isBigBook()) {
+            System.out.println(mockingbird.title + " Книга большая");
+        } else {
+            System.out.println(mockingbird.title + " Книга небольшая");
+        }
+        if(persiJackson.isBigBook()) {
+            System.out.println(persiJackson.title + " Книга большая");
+        } else {
+            System.out.println(persiJackson.title + " Книга небольшая");
+        }
 
         mockingbird.increasePages(200);
-        mockingbird.isBigBook();
+        if(mockingbird.isBigBook()) {
+            System.out.println(mockingbird.title + " Книга большая");
+        } else {
+            System.out.println(mockingbird.title + " Книга небольшая");
+        }
 
     }
 }
@@ -63,10 +95,8 @@ class Student {
     }
     boolean isAdult() {
         if(age >= 18) {
-            System.out.println("Cовершеннолетний " + "\n");
             return true;
         } else {
-            System.out.println("Пиздюк " + "\n");
             return false;
             }
         }
@@ -97,19 +127,15 @@ class Student {
         }
         boolean needService() {
             if (this.mileage >= 100000) {
-                System.out.println("Необходимо ТО");
                 return true;
             } else {
-                System.out.println("Всё в порядке, ТО не нужен");
                 return false;
             }
         }
         boolean isOld() {
             if (year <= 2016) {
-                System.out.println("Авто старое");
                 return true;
             } else {
-                System.out.println("Авто новое");
                 return false;
             }
         }
@@ -129,10 +155,8 @@ class Student {
         }
         boolean isBigBook() {
             if (pages >= 500) {
-                System.out.println(" Книга большая \n");
                 return true;
             } else {
-                System.out.println(" Книга небольшая \n");
                 return false;
             }
         }
