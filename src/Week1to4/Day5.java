@@ -1,3 +1,5 @@
+package Week1to4;
+
 public class Day5 {
     public static void main(String[] args) {
         int[] array = new int[]{1, 2, 3, 5, 9, 10, 3, 11, 19, 4, 13, 20, 17};

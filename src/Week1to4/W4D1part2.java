@@ -1,3 +1,5 @@
+package Week1to4;
+
 public class W4D1part2 {
     public static void main(String[] args) {
         BankAccount account = new BankAccount("Алексей", 12345, 10000);

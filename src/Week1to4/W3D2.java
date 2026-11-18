@@ -1,3 +1,5 @@
+package Week1to4;
+
 import java.util.ArrayList;
 
 public class W3D2 {

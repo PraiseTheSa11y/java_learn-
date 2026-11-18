@@ -1,3 +1,5 @@
+package Week1to4;
+
 import java.util.Arrays;
 import java.util.Scanner;
 

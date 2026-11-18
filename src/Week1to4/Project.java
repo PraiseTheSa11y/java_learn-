@@ -1,4 +1,5 @@
-import java.util.InputMismatchException;
+package Week1to4;
+
 import java.util.Scanner;
 
 class Main {

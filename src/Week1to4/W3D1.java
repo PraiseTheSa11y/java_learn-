@@ -1,5 +1,4 @@
-import java.sql.SQLOutput;
-import java.util.Scanner;
+package Week1to4;
 
 public class W3D1 {
     public static void main(String args[]) {

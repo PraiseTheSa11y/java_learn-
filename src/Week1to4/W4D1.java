@@ -1,3 +1,5 @@
+package Week1to4;
+
 import java.util.Arrays;
 
 public class W4D1 {
