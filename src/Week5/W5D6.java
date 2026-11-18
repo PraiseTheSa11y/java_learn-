@@ -6,59 +6,86 @@ import java.util.Scanner;
 
 public class W5D6 {
     public static void main(String[] args) {
-        ArrayList<Employee6> employees = new ArrayList<>();
-        EmployeeService employeeService = new EmployeeService();
-        Scanner sc = new Scanner(System.in);
 
-        while (true) {
-            employeeService.printMenu();
-            int choice = employeeService.readInt(sc, "Выберите пункт меню: ", 0);
-            if (choice == 0) {
-                break;
-            }
-            switch (choice) {
-                case 1:
-                    employeeService.printEmployees(employees);
+            ArrayList<Employee6> employees = new ArrayList<>();
+            EmployeeService employeeService = new EmployeeService();
+            Scanner sc = new Scanner(System.in);
+
+            while (true) {
+                System.out.println("\n=== МЕНЮ ===");
+                System.out.println("1. Показать всех сотрудников");
+                System.out.println("2. Добавить сотрудника");
+                System.out.println("3. Удалить сотрудника");
+                System.out.println("4. Изменить статус сотрудника");
+                System.out.println("5. Найти сотрудника по имени");
+                System.out.println("6. Показать сотрудников с бонусами");
+                System.out.println("7. Найти сотрудника с самой высокой зарплатой");
+                System.out.println("8. Посчитать сотрудников в отделе");
+                System.out.println("9. Посчитать общий фонд зарплат");
+                System.out.println("10. Сводка по компании");
+                System.out.println("0. Выход");
+
+                int choice = employeeService.readInt(sc, "Выберите пункт меню: ", 0);
+                if (choice == 0) {
                     break;
-                case 2:
-                    employeeService.addEmployee(employees, sc);
-                    break;
-                case 3:
-                    employeeService.removeEmployee(employees, sc);
-                    break;
-                case 4:
-                    employeeService.changeStatus(employees, sc);
-                    break;
-                case 5:
-                    Employee6 found = employeeService.findFirstByName(employees, sc);
-                    if (found != null) {
-                        System.out.println(found.getInfo());
-                    }
-                    break;
-                case 6:
-                    employeeService.printBonusEmployees(employees);
-                    break;
-                case 7:
-                    Employee6 best = employeeService.findHighestSalaryEmployee(employees, sc);
-                    if (best != null) {
-                        System.out.println(best.getInfo());
-                    }
-                    break;
-                case 8:
-                    employeeService.printCountByDepartment(employees, sc);
-                    break;
-                case 9:
-                    System.out.println("Общий фонд зарплат: " + employeeService.calculateTotalSalary(employees, sc));
-                    break;
-                case 10:
-                    employeeService.getCompanySummary(employees, sc);
-                    break;
-                default:
-                    System.out.println("Выберите пункт меню от 0 до 10");
+                }
+
+                switch (choice) {
+                    case 1:
+                        employeeService.printEmployees(employees);
+                        break;
+                    case 2:
+                        employeeService.addEmployee(employees, sc);
+                        break;
+                    case 3:
+                        employeeService.removeEmployee(employees, sc);
+                        break;
+                    case 4:
+                        Employee6 empToChange = employeeService.findFirstByName(employees, sc);
+                        if (empToChange != null) {
+                            int i = 1;
+                            for (Status status : Status.values()) {
+                                System.out.println(i++ + ". " + status.getRusStatus());
+                            }
+                            Status newStatus = employeeService.chooseStatus(sc);
+                            employeeService.changeStatus(empToChange, newStatus);
+                        }
+                        break;
+                    case 5:
+                        Employee6 found = employeeService.findFirstByName(employees, sc);
+                        if (found != null) {
+                            System.out.println(found.getInfo());
+                        }
+                        break;
+                    case 6:
+                        employeeService.printBonusEmployees(employees);
+                        break;
+                    case 7:
+                        Employee6 best = employeeService.findHighestSalaryEmployee(employees, sc);
+                        if (best != null) {
+                            System.out.println(best.getInfo());
+                        }
+                        break;
+                    case 8:
+                        int i = 1;
+                        for (Department dept : Department.values()) {
+                            System.out.println(i++ + ". " + dept.getRusDepartment());
+                        }
+                        Department selectedDept = employeeService.chooseDepartment(sc);
+                        System.out.println("Количество сотрудников: " + employeeService.countByDepartment(employees, selectedDept));
+                        break;
+                    case 9:
+                        System.out.println("Общий фонд зарплат: " + employeeService.calculateTotalSalary(employees, sc));
+                        break;
+                    case 10:
+                        employeeService.getCompanySummary(employees, sc);
+                        break;
+                    default:
+                        System.out.println("Выберите пункт меню от 0 до 10");
+                }
             }
         }
     }
-}
 
 abstract class Employee6 {
         private String name;
@@ -301,28 +328,6 @@ class EmployeeService {
         }
     }
 
-    public void changeStatus(ArrayList<Employee6> employees, Scanner sc) {
-
-        if (employees.isEmpty()) {
-            System.out.println("Список сотрудников пуст");
-            return;
-        }
-
-        Employee6 employee = findFirstByName(employees, sc);
-        if (employee == null) {
-            return;
-        }
-        int i = 1;
-        for (Status status : Status.values()) {
-            System.out.println(i + ". " + status.getRusStatus());
-            i++;
-        }
-        Status newStatus = chooseStatus(sc);
-
-        changeStatus(employee, newStatus);
-
-    }
-
     public void printBonusEmployees(ArrayList<Employee6> employees) {
         for (Employee6 employee : employees) {
 
@@ -418,22 +423,6 @@ class EmployeeService {
         return counter;
     }
 
-    public void printCountByDepartment(ArrayList<Employee6> employees, Scanner sc) {
-
-        int i = 1;
-
-        for (Department department : Department.values()) {
-            System.out.println(i + ". " + department.getRusDepartment());
-            i++;
-        }
-
-        Department department = chooseDepartment(sc);
-
-        int count = countByDepartment(employees, department);
-
-        System.out.println("Количество сотрудников в отделе «" + department.getRusDepartment() + "»: " + count);
-    }
-
     public int calculateTotalSalary(ArrayList<Employee6> employees, Scanner sc) {
         int total = 0;
 
@@ -480,7 +469,7 @@ class EmployeeService {
         }
     }
 
-    private Department chooseDepartment(Scanner sc) {
+    public Department chooseDepartment(Scanner sc) {
         while (true) {
             int userChoice = readInt(sc, "Выберите отдел от 1 до 4: ", 1);
 
@@ -499,7 +488,7 @@ class EmployeeService {
         }
     }
 
-    private Status chooseStatus(Scanner sc) {
+    public Status chooseStatus(Scanner sc) {
         while (true) {
             int userChoice = readInt(sc, "Выберите статус сотрудника от 1 до 3: ", 1);
 
@@ -561,19 +550,5 @@ class EmployeeService {
         }
     }
 
-    public void printMenu() {
-        System.out.println("\n=== МЕНЮ ===");
-        System.out.println("1. Показать всех сотрудников");
-        System.out.println("2. Добавить сотрудника");
-        System.out.println("3. Удалить сотрудника");
-        System.out.println("4. Изменить статус сотрудника");
-        System.out.println("5. Найти сотрудника по имени");
-        System.out.println("6. Показать сотрудников с бонусами");
-        System.out.println("7. Найти сотрудника с самой высокой зарплатой");
-        System.out.println("8. Посчитать сотрудников в отделе");
-        System.out.println("9. Посчитать общий фонд зарплат");
-        System.out.println("10. Сводка по компании");
-        System.out.println("0. Выход");
-    }
 
 }
